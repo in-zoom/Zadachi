@@ -9,10 +9,10 @@ x := []int{
 37, 34, 83, 27,
 19, 97, 9, 17	,
 }
-y := []int{x[0]}
+y := []int{x[0]} //
 for i, value := range x {
 if value < y[0] {
-y[0] = x[i]
+y[0] = x[i] //
 }
 }
 fmt.Println(y[0])
