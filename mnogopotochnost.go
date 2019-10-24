@@ -6,20 +6,21 @@ import (
 )
 
 //Напишите собственную функцию Sleep, используя time.After
-func sleep() time.Time {
+func sleep(s int) {
 
 	select {
-	case c2 := <-time.After(time.Second):
-		return c2
+	case <-time.After(time.Second * time.Duration(s)):
+		return
 	}
 }
+
 func main() {
 	c1 := make(chan string)
 
 	go func() {
 		for {
 			c1 <- "Привет"
-			sleep()
+			sleep(3)
 		}
 	}()
 
@@ -28,7 +29,7 @@ func main() {
 			select {
 			case msg1 := <-c1:
 				fmt.Println("Сообщение 1", msg1)
-				fmt.Println(sleep())
+
 			}
 		}
 	}()
